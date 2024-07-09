@@ -6,7 +6,9 @@
   <li>Starts the timer in Act 1 after the load.
   <li>Resets the timer when selecting "New Game" in the menu.
   <li>Removes loads of the timer.
-  <li>Splits automatically (with the layout and the split file).
+  <li>Splits automatically (with the layout and the split in the zip file).
+  <li>The ZIP file contains: the Layout that should be used in addition to the autosplitter, the Splits and the .asl file (script of the autosplitter)
+    
 </ul>
 
 <h3>Resources</h3>
