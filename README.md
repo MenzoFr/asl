@@ -15,9 +15,9 @@ Leaderboards: https://www.speedrun.com/hn1
 </div> <div>
 Discord: https://discord.gg/cY8Zudj9BZ
 </div> <div>
-Website: helloneighborgame.com
+Website: https://www.helloneighborgame.com/
 </div>
-Game: s.team/a/521890 ($29.99)
+Game: https://store.steampowered.com/app/521890/Hello_Neighbor/
 
 
 
