@@ -18,8 +18,16 @@ Leaderboards: https://www.speedrun.com/hn1
 Discord: https://discord.gg/cY8Zudj9BZ
 </div> <div>
 Website: https://www.helloneighborgame.com/
-</div>
+</div> <div>
 Game: https://store.steampowered.com/app/521890/Hello_Neighbor/
+
+<h3>Credits</h3>
+
+<em> Mysterion352 </em> for helping me with the splitting method
+<div>
+<em>wRadion </em> for helping me with the starting method.
+</div>
+
 
 
 
