@@ -10,11 +10,17 @@
 </ul>
 
 <h3>Resources</h3>
-
+<div>
 Leaderboards: https://www.speedrun.com/hn1
+</div> <div>
 Discord: https://discord.gg/cY8Zudj9BZ
-WebSite: https://www.helloneighborgame.com/
-Game: s.team/a/521890
+</div> <div>
+Website: helloneighborgame.com
+</div>
+Game: s.team/a/521890 ($29.99)
+
+
+
 
 
 
