@@ -3,7 +3,7 @@
 <h2>Features</h2>
 
 <ul> 
-  <li>Starts the timer in Act 1 after the load.
+  <li>Starts the timer in Act 1 after skipping the cutscene.
   <li>Resets the timer when selecting "New Game" in the menu.
   <li>Removes loads of the timer.
   <li>Splits automatically (with the layout and the split in the files).
