@@ -30,6 +30,7 @@ init
 {
     // Initialize the split variable
     vars.split = 0;
+    vars.vsplit = 0;
 
     // Determine the correct version based on ModuleMemorySize
     if (modules.First().ModuleMemorySize == 51978240)
@@ -71,6 +72,7 @@ start
         if (current.startStatus == 1071877691 && current.menuStatus != 2 && current.loadStatus == 1)
         {
             vars.split = 0;
+            vars.vsplit = 0;
             return true;
         }
     }
@@ -106,15 +108,19 @@ split
         if ((current.missionNumber == 197 && old.missionNumber != 197 && vars.split == 0) ||
             (current.missionNumber == 9128 && old.missionNumber != 9128 && vars.split == 1) ||
             (current.missionNumber == 9 && old.missionNumber != 9 && vars.split == 2) ||
-            (current.missionNumber == 52 && old.missionNumber != 52 && vars.split == 3) ||
+            (current.missionNumber == 52 && old.missionNumber != 52 && vars.split == 3 && vars.vsplit > 1) ||
             (current.missionNumber == 78 && old.missionNumber != 78 && vars.split == 4) ||
             (current.missionNumber == 2 && old.missionNumber != 2 && vars.split == 5) ||
-            (current.missionNumber == 1 && old.missionNumber == 9031 && vars.split == 6))
-        {
-            vars.split++;
-            return true;
-        }
-    }
+            (current.missionNumber == 1 && old.missionNumber == 9031 && vars.split == 6)){
+		vars.split++;
+	    return true;
+     }
+     
+     // Add 2 to vars.spit if missionNumber is 52
+     if (current.missionNumber == 52) {
+        vars.vsplit += 2;
+     }
+}
     else if (version == "v1.4")
     {
         if ((current.missionNumber == 9554 && old.missionNumber != 9554 && vars.split == 0) || 
