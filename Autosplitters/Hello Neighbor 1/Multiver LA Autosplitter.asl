@@ -1,4 +1,4 @@
- // Define states for all versions
+// Define states for all versions
 state("HelloNeighbor-Win64-Shipping", "v1.1.6")
 {
     int missionNumber: 0x02D7DB58, 0xF8, 0x70, 0x260;
@@ -61,7 +61,7 @@ start
 {
     if (version == "v1.1.6")
     {
-        if(current.startStatus == 0 && old.startStatus != 0 && current.menuStatus != 3 && current.loadStatus == 1){
+        if(current.startStatus == 0 && old.startStatus != 0 && current.menuStatus != 3 && current.loadStatus == 1)
         {
             vars.split = 0;
             return true;
