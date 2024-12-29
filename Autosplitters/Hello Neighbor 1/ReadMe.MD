@@ -1,6 +1,6 @@
 <h1>AutoSplitter For Hello Neighbor</h1>
 <div>
-<h2>Features</h2>
+<h2>Features (Full Game)</h2>
 
 <ul> 
   <li>Starts the timer in Act 1 after skipping the cutscene.
