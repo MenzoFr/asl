@@ -1,4 +1,3 @@
-// Define states for all versions
 state("HelloNeighbor-Win64-Shipping", "v1.1.6")
 {
     int missionNumber: 0x02D7DB58, 0xF8, 0x70, 0x260;
@@ -26,9 +25,17 @@ state("HelloNeighbor-Win64-Shipping", "v1.4")
     bool IsLoading: 0x030DBBE8, 0x54C;
 }
 
+state("HelloNeighborReborn-Win64-Shipping", "Alpha 1")
+{
+    int startStatus: 0x0238D478, 0x118, 0x130, 0x380, 0x50;
+    float xPos: 0x0238D478, 0x118, 0x130, 0x160, 0x124;
+    float yPos: 0x0238D478, 0x118, 0x130, 0x160, 0x128;
+    float zPos: 0x0238D478, 0x118, 0x130, 0x160, 0x120;
+    float csState: 0x0238D478, 0x118, 0xD0, 0x3C8; 
+}
+
 init
 {
-    // Initialize the split variable
     vars.split = 0;
     vars.vsplit = 0;
 
@@ -39,6 +46,8 @@ init
         version = "v0.8";
     else if (modules.First().ModuleMemorySize == 55689216)
         version = "v1.4";
+    else if (modules.First().ModuleMemorySize == 40443904)
+        version = "Alpha 1";
     else
         version = ""; // Default case if no version matches
 }
@@ -61,7 +70,7 @@ start
 {
     if (version == "v1.1.6")
     {
-        if(current.startStatus == 0 && old.startStatus != 0 && current.menuStatus != 3 && current.loadStatus == 1)
+        if (current.startStatus == 0 && old.startStatus != 0 && current.menuStatus != 3 && current.loadStatus == 1)
         {
             vars.split = 0;
             return true;
@@ -81,6 +90,47 @@ start
         if (current.startStatus == 1071877691 && current.menuStatus != 4 && current.loadStatus == 1)
         {
             vars.split = 0;
+            return true;
+        }
+    }
+    else if (version == "Alpha 1")
+    {
+        if (current.startStatus == 0 && old.startStatus != 0)
+            return true;
+    }
+    return false;
+}
+
+reset
+{
+    if (version == "v1.1.6")
+    {
+        if (current.menuStatus == 3 && old.menuStatus != 3)
+        {
+            return true;
+        }
+    }
+    else if (version == "v0.8")
+    {
+        if (current.menuStatus == 2 && old.menuStatus != 2)
+        {
+            return true;
+        }
+    }
+    else if (version == "v1.4")
+    {
+        if (current.menuStatus == 4 && old.menuStatus != 4)
+        {
+            return true;
+        }
+    }
+    else if (version == "Alpha 1")
+    {
+        if (current.xPos > 6200 && current.xPos < 6203
+            && current.yPos > 277 && current.yPos < 279
+            && current.zPos > 134 && current.zPos < 136
+            && current.startStatus == 1 && old.startStatus != 1)
+        {
             return true;
         }
     }
@@ -111,16 +161,17 @@ split
             (current.missionNumber == 52 && old.missionNumber != 52 && vars.split == 3 && vars.vsplit > 1) ||
             (current.missionNumber == 78 && old.missionNumber != 78 && vars.split == 4) ||
             (current.missionNumber == 2 && old.missionNumber != 2 && vars.split == 5) ||
-            (current.missionNumber == 1 && old.missionNumber == 9031 && vars.split == 6)){
-		vars.split++;
-	    return true;
-     }
-     
-     // Add 2 to vars.spit if missionNumber is 52
-     if (current.missionNumber == 52) {
-        vars.vsplit += 2;
-     }
-}
+            (current.missionNumber == 1 && old.missionNumber == 9031 && vars.split == 6))
+        {
+            vars.split++;
+            return true;
+        }
+        
+        if (current.missionNumber == 52)
+        {
+            vars.vsplit += 2;
+        }
+    }
     else if (version == "v1.4")
     {
         if ((current.missionNumber == 9554 && old.missionNumber != 9554 && vars.split == 0) || 
@@ -135,36 +186,19 @@ split
             return true;
         }
     }
-    return false;
-}
-
-reset
-{
-    if (version == "v1.1.6")
+    else if (version == "Alpha 1")
     {
-        if (current.menuStatus == 3 && old.menuStatus != 3)
-        {
+        if (current.xPos < 1500 && current.csState == 1)
             return true;
-        }
-    }
-    else if (version == "v0.8")
-    {
-        if (current.menuStatus == 2 && old.menuStatus != 2)
-        {
-            return true;
-        }
-    }
-    else if (version == "v1.4")
-    {
-        if (current.menuStatus == 4 && old.menuStatus != 4)
-        {
-            return true;
-        }
     }
     return false;
 }
 
 isLoading
 {
-    return !current.IsLoading;
+    if (version == "v1.1.6" || version == "v0.8" || version == "v1.4")
+    {
+        return !current.IsLoading;
+    }
+    return false; // For alpha1, isLoading logic isn't defined
 }
