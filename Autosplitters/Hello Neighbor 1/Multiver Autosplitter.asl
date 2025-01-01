@@ -12,7 +12,7 @@ state("HelloNeighbor-Win64-Shipping", "v0.8")
     int missionNumber: 0x037D9490, 0x15C0;
     int menuStatus: 0x0383C0D0, 0x920, 0x550;
     int loadStatus: 0x037DB780, 0xA00;
-    int startStatus: 0x03AB5DE8, 0x90, 0x408, 0x48;
+    int startStatus: 0x0383C0D0, 0xD0C;
     bool IsLoading: 0x037DB780, 0xA00;
 }
 
@@ -78,7 +78,7 @@ start
     }
     else if (version == "v0.8")
     {
-        if (current.startStatus == 1071877691 && current.menuStatus != 2 && current.loadStatus == 1)
+        if(current.startStatus == 0 && old.startStatus != 0 && current.menuStatus != 2 && current.loadStatus == 1)
         {
             vars.split = 0;
             vars.vsplit = 0;
